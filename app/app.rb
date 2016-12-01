@@ -29,6 +29,12 @@ class Bookmark < Sinatra::Base
     erb :'links/new_link'
   end
 
+  get '/tags/:name' do
+    @tag = Tag.first(name: params[:tag])
+    @links = @tag ? @tag.links : []
+    erb :'/links/filtered_links'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
