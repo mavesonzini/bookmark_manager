@@ -30,7 +30,7 @@ class Bookmark < Sinatra::Base
   end
 
   get '/tags/:name' do
-    @tag = Tag.first(name: params[:tag])
+    @tag = Tag.first(name: params[:name])
     @links = @tag ? @tag.links : []
     erb :'/links/filtered_links'
   end
