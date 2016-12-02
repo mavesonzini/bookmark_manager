@@ -9,6 +9,7 @@ class Bookmark_manager < Sinatra::Base
   end
 
   get '/links' do
+
     @links = Link.all
     erb(:'links/links')
   end
@@ -26,6 +27,14 @@ class Bookmark_manager < Sinatra::Base
     tag = Tag.first(name: params[:name])
     @links = tag ? tag.links : []
     erb (:'links/links')
+  end
+
+  get '/links/signup' do
+    erb (:'links/signup')
+  end
+
+  post '/links_signup' do
+    $user = User.create(email: params[:email], password: params[:password])
   end
 
   # start the server if ruby file executed directly
