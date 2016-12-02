@@ -21,11 +21,10 @@ class Bookmark_manager < Sinatra::Base
     redirect '/links'
   end
 
-  get '/tags/:tag' do
-    @tag = params[:tag]
-    @links = Link.all(:url => "bob")
-    # require'pry';binding.pry
-    erb(:'links/tags')
+  get '/tags/:name' do
+    tag = Tag.first(name: params[:name])
+    @links = tag ? tag.links : []
+    erb (:'links/links')
   end
 
   # start the server if ruby file executed directly

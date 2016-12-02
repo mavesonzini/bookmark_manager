@@ -3,8 +3,8 @@
 <BODY>
 
 <ul id='tags'>
-  <% @links.map do |link| %>
-  <%= link %>
+  <% @tag.links.each do |link| %>
+  <%= link.title %>
   <% end %>
 </ul>
 
